@@ -1,0 +1,17 @@
+spring:
+#####################################################################################################
+# mysql 属性配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_cloud_demo?createDatabaseIfNotExist=true
+    username: root
+    password:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create #ddl-auto:设为create表示每次都重新建表
+      #      ddl-auto: update #ddl-auto:设为update表示每次都不会重新建表
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #解决自动添加下划线问题
+
+#####################################################################################################

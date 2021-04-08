@@ -36,7 +36,7 @@ public class OrderController {
 
         InstanceInfo instanceInfo=eurekaClient.getNextServerFromEureka("SPRING-BOOT-USER",false);
         String userUrl=instanceInfo.getHomePageUrl();
-        return  restTemplate.getForObject(userUrl+"user/"+id,User.class);
+        return  restTemplate.getForObject(userUrl+"user/id/"+id,User.class);
 
 //        return  restTemplate.getForObject("http://localhost:8081/user/"+id,User.class);
     }

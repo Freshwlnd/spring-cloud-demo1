@@ -2,15 +2,26 @@ package com.demo.springcloudcommon.obj;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@Entity
+@Table(name = "user")
 public class User {
-    private String id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
+    private String userName;
+
+    @Column
     private Date nowDate;
 
-    public User(String id) {
-        this.id = id;
+    public User(String userName) {
+        this.userName = userName;
         this.nowDate = new Date();
     }
 

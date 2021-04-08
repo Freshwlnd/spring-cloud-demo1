@@ -1,28 +1,46 @@
 package com.demo.springclouduser.controller;
 
 import com.demo.springcloudcommon.obj.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.demo.springclouduser.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/{id}")
-    public User getUser(@PathVariable String id) {
-        return new User(id);
+    @Autowired
+    private IUserService iUserService;
+
+    @GetMapping("/id/{id}")
+    public User getUser(@PathVariable int id) {
+        return iUserService.findUserById(id);
+    }
+
+    @GetMapping("/name/{userName}")
+    public List<User> getUser(@PathVariable String userName) {
+        return iUserService.findUserByName(userName);
     }
 
     @GetMapping("/list")
     public List<User> list() {
-        List<User> userList = new ArrayList<>();
-        userList.add(new User("1"));
-        userList.add(new User("2"));
-        return userList;
+        return iUserService.findAllUsers();
+    }
+
+    @GetMapping("/addUser/{userName}")
+    public User addUser(@PathVariable String userName) {
+        User user = new User(userName);
+        int result = iUserService.insertUser(user);
+        if (result > 0) {
+            return user;
+        }
+
+        user.setId(0L);
+        user.setUserName(null);
+        user.setNowDate(new Date());
+        return user;
     }
 }

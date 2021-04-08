@@ -3,6 +3,24 @@ server:
 spring:
   application:
     name: spring-boot-user  #配置的应用名称（用于指定到注册到Eureka上的应用的名称），这里暂且还用不到
+
+#####################################################################################################
+# mysql 属性配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_cloud_demo?createDatabaseIfNotExist=true
+    username: root
+    password:
+  jpa:
+    show-sql: true
+    hibernate:
+
+      ddl-auto: create #ddl-auto:设为create表示每次都重新建表
+#      ddl-auto: update #ddl-auto:设为update表示每次都不会重新建表
+
+
+#####################################################################################################
+
 eureka:
   client:
     serviceUrl:
