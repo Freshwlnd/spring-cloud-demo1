@@ -1,0 +1,11 @@
+server:
+  port: 8081  #该项目启动的端口号
+spring:
+  application:
+    name: spring-boot-user  #配置的应用名称（用于指定到注册到Eureka上的应用的名称），这里暂且还用不到
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true   #表示将自己的ip注册到eureka上，如果不配置该属性或者设置为false，则表示注册微服务所在的操作系统的hostname到eureka上
